@@ -55,6 +55,7 @@
 Each one of us will use a different local DataBase, we will host a shared DB online later
 
 ## Project Structure
+```
 .
 ├── app.js              <- Start the website
 ├── bin
@@ -80,3 +81,4 @@ Each one of us will use a different local DataBase, we will host a shared DB onl
     ├── registration.ejs
     ├── searchresults.ejs
     └── ... 
+```
