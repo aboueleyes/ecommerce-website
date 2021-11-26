@@ -53,3 +53,30 @@
 - To create a database follow [this tut](https://streamable.com/ql4ee6)
 
 Each one of us will use a different local DataBase, we will host a shared DB online later
+
+## Project Structure
+.
+├── app.js              <- Start the website
+├── bin
+│   └── www
+├── LICENSE
+├── package.json
+├── public              <- Static files
+│   ├── images
+│   │   ├── background1.jpg
+│   │   ├── books.png
+│   │   ├── boxing.jpg
+│   │   └── ...
+│   ├── javascripts
+│   └── stylesheets
+│       └── style.css
+├── README.md
+├── routes             
+│   ├── index.js
+│   └── users.js
+└── views               <- templates for the web pages 
+    ├── books.ejs
+    ├── login.ejs
+    ├── registration.ejs
+    ├── searchresults.ejs
+    └── ... 
