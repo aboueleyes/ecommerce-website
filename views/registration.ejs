@@ -40,6 +40,13 @@
             Password: <br>
             <input type="password" id="password" name="password"> <br> <br>
             <input type="submit" id="simple_click" class="btn btn-secondary" value="Register"> <br>
+            <%if(typeof ok !== 'undefined'&& ok === 'no'){%>
+                <p>this user name is already used</p>
+            <%}else if(typeof ok !== 'undefined'&& ok === 'yes'){%>
+                <p> registered succesfully</p>
+            <%}%>
+             
+
         </form>
     </div>
 </body>
