@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+
+// const Schema = mongoose.Schema;
 const portNumber = process.env.PORT || 27017;
 mongoose.connect(`mongodb://localhost:${portNumber}`);
 
-let userModel = require('./database/userModel');
-let user = new userModel({
-  userName: 'ibrahim2',
-  password: 'ibrahim_password'
-});
+// const user = new userModel({
+//   userName: 'ibrahim2',
+//   password: 'ibrahim_password'
+// });
 
 // user.save((err, user) => {
 //   if (err) {
@@ -17,18 +17,18 @@ let user = new userModel({
 //   }
 // });
 
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
 // declare Routers
-var indexRouter = require('./routes/index');
-var loginRouter = require('./routes/login');
-var homeRoute = require('./routes/home');
-var registerRoute = require('./routes/register');
-var app = express();
+const indexRouter = require('./routes/index');
+const loginRouter = require('./routes/login');
+const homeRoute = require('./routes/home');
+const registerRoute = require('./routes/register');
+
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -46,5 +46,4 @@ app.use('/register', registerRoute);
 app.use('/login', loginRouter);
 // launch server
 app.listen(3000, () => {
-  console.log('Server is running on port 3000');
 });

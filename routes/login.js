@@ -1,23 +1,21 @@
-var express = require('express');
-var router = express.Router();
-const User = require('../database/userModel');
+const express = require('express');
 const bcrypt = require('bcrypt');
+const User = require('../database/userModel');
 
-router.post('/', function (req, res, next) {
-  var userName = req.body.username;
-  var password = req.body.password;
-  var hashedPassword = bcrypt.hashSync(password, 10);
-  console.log(hashedPassword);
-  var verify = 'no';
+const router = express.Router();
+
+router.post('/', (req, res, next) => {
+  const userName = req.body.username;
+  const { password } = req.body;
+  const hashedPassword = bcrypt.hashSync(password, 10);
+  let verify = 'no';
   // check if user exists in database
-  User.findOne({ userName: userName }, (err, user) => {
+  User.findOne({ userName }, (err, user) => {
     if (err) {
-      console.log(err);
-    } else {
-      if (user) {
-        if (bcrypt.compareSync(password, hashedPassword)) {
-          verify = 'yes';
-        }
+      // console.log(err);
+    } else if (user) {
+      if (bcrypt.compareSync(password, hashedPassword)) {
+        verify = 'yes';
       }
     }
     if (verify === 'yes') {

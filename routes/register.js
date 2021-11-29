@@ -1,15 +1,17 @@
-var express = require('express');
-var router = express.Router();
-var User = require('../database/userModel');
-var mongoose = require('mongoose');
+/* eslint-disable arrow-parens */
+const express = require('express');
+// const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const url =
-  'mongodb+srv://shimaa:Shemo$2864@cluster0.f4td6.mongodb.net/MyDb?retryWrites=true&w=majority';
-const url_ibrahim = 'localhost:27017/products';
+const User = require('../database/userModel');
+
+const router = express.Router();
+// const url =
+//   'mongodb+srv://shimaa:Shemo$2864@cluster0.f4td6.mongodb.net/MyDb?retryWrites=true&w=majority';
+// const urlIbrahim = 'localhost:27017/products';
 async function register(userName, password) {
   // await mongoose.connect(url_ibrahim);
-  const user = new User({ userName: userName, password: password });
-  var verify = 'yes';
+  const user = new User({ userName, password });
+  let verify = 'yes';
   await user.save().catch(err => {
     if (err) {
       verify = 'no';
@@ -19,18 +21,16 @@ async function register(userName, password) {
 }
 /* POST registration into db. */
 router.post('/', (req, res, next) => {
-  var userName = req.body.username;
-  var password = req.body.password;
+  const userName = req.body.username;
+  const { password } = req.body;
   // hash password
-  var hashedPassword = bcrypt.hashSync(password, 10);
-  console.log(hashedPassword);
+  const hashedPassword = bcrypt.hashSync(password, 10);
   register(userName, hashedPassword).then(verify => {
-    console.log(verify);
     res.render('home', { ok: verify });
   });
 });
-/* GET registration page*/
-router.get('/', function (req, res, next) {
+/* GET registration page */
+router.get('/', (req, res, next) => {
   res.render('registration');
 });
 
