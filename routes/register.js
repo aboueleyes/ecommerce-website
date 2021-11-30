@@ -1,13 +1,11 @@
 /* eslint-disable arrow-parens */
 const express = require('express');
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const url =
-  'mongodb+srv://shimaa:Shemo$2864@cluster0.f4td6.mongodb.net/MyDb?retryWrites=true&w=majority';
+const router = express.Router();
+const User = require('../database/userModel');
   
-const url_ibrahim = 'localhost:27017/users';
 async function register(userName, password) {
-  await mongoose.connect(url);
   const user = new User({ userName: userName, password: password });
   var verify = 'yes';
   await user.save().catch(err => {

@@ -3,7 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+const url ='mongodb+srv://shimaa:Shemo$2864@cluster0.f4td6.mongodb.net/MyDb?retryWrites=true&w=majority';
+//const url = 'localhost:27017/users';
+const mongoose = require('mongoose');
+async function connect (){
+    await mongoose.connect(url);
+}
 // declare Routers
 var loginRouter = require('./routes/login');
 var homeRoute = require('./routes/home');
@@ -24,5 +29,9 @@ app.use('/', loginRouter);
 app.use('/home', homeRoute);
 app.use('/register', registerRoute);
 // launch server
-app.listen(3000, () => {
-});
+app.listen(3000, connect().then(()=> {
+    console.log("Server is running on port 30000")
+}) 
+);
+
+
