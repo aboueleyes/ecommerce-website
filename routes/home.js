@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const defaultData = require('../database/defaultData');
+
+defaultData.getDefaultDataIfDBEmpty();
 
 const categories = [
   {

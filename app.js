@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mongoose = require('mongoose');
 
 // routes
 const homeRoute = require('./routes/home');
@@ -11,6 +12,11 @@ const productRoute = require('./routes/product');
 const cartRoute = require('./routes/cart');
 
 const app = express();
+
+// connect to database
+mongoose.connect('mongodb://localhost:27017/ecommerceDB', {
+  useNewUrlParser: true
+});
 
 // view engine setup
 app.set('view engine', 'ejs');
