@@ -21,7 +21,7 @@ router.post('/', function (req, res, next) {
       }
     }
     if (verify === 'yes') {
-      res.redirect('/home?userName='+userName);
+      res.redirect('/?userName='+userName);
     } else {
       res.render('login', { ok: 'no' });
     }

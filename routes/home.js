@@ -4,6 +4,7 @@ const defaultData = require('../database/defaultData');
 const Category = require('../database/categoryModel');
 
 router.get('/', function (req, res) {
+  var userName = req.query.userName;
   Category.find({}, (err, categories) => {
     if (err) {
       console.log(err);
@@ -12,9 +13,10 @@ router.get('/', function (req, res) {
         defaultData.getDefaultData();
         res.redirect('/');
       }
-      res.render('home', { categories: categories });
+      res.render('home', { categories: categories ,userName : userName});
     }
   });
+});
 
 
 

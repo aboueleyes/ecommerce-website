@@ -23,7 +23,7 @@ router.post('/', (req, res, next) => {
   const hashedPassword = bcrypt.hashSync(password, 10);
   register(userName, hashedPassword).then(verify => {
     if (verify === 'yes') {
-      res.redirect('/')
+      res.redirect('/login')
     }
     else{  
       res.render('registration', {ok : verify} );
