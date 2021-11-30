@@ -15,6 +15,7 @@ router.get('/', function (req, res) {
       res.render('home', { categories: categories });
     }
   });
-});
+
+
 
 module.exports = router;

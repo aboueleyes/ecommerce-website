@@ -1,47 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <style>
-        body {
-            background-image: url("background2.jpg");
-            background-repeat: no-repeat;
-            background-size: 100%;
-            }
-        h1 {
-            color: white;
-            text-align: center;
-            -webkit-text-stroke: 1px blue;
-        }
-        .cont {
-            position:relative;
-            left:600px;
-            top:50px;
-            color: white;
-            -webkit-text-stroke: 0.5px black;
-        }
+      body {
+        background-image: url('background2.jpg');
+        background-repeat: no-repeat;
+        background-size: 100%;
+      }
+      h1 {
+        color: white;
+        text-align: center;
+        -webkit-text-stroke: 1px blue;
+      }
+      .cont {
+        position: relative;
+        left: 600px;
+        top: 50px;
+        color: white;
+        -webkit-text-stroke: 0.5px black;
+      }
     </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Registration</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        crossorigin="anonymous">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <h1>Registration</h1>
+      <h1>Registration</h1>
     </div>
     <div class="cont">
-        <form method='post' action='/register'>
-            Username: <br>
-            <input type="text" id="user" name="username"> <br>
-            Password: <br>
-            <input type="password" id="password" name="password"> <br> <br>
-            <input type="submit" id="simple_click" class="btn btn-secondary" value="Register"> <br>
-        </form>
-    </div>
-</body>
+      <form method="post" action="/register">
+        Username: <br />
+        <input type="text" id="user" name="username" /> <br />
+        Password: <br />
+        <input type="password" id="password" name="password" /> <br />
+        <br />
+        <input
+          type="submit"
+          id="simple_click"
+          class="btn btn-secondary"
+          value="Register"
+        />
+        <br />
+        <!-- check if password is strong -->
+        <script>
+          var user = document.getElementById('user');
+          user.onchange = function () {
+            if (user.value.length < 4) {
+              user.style.borderColor = 'red';
+              user.setCustomValidity(
+                'Username must be at least 4 characters long'
+              );
+            }
+          };
 
+          var password = document.getElementById('password');
+
+          // use regex to check if password is strong
+          var strongRegex = new RegExp(
+            '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})'
+          );
+          var mediumRegex = new RegExp(
+            '^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})'
+          );
+          var error_message =
+            'Password must contain 8 characters, one uppercase, one lowercase, one number, and one special character';
+          password.onchange = function () {
+            if (strongRegex.test(password.value)) {
+              password.setCustomValidity('');
+            } else if (mediumRegex.test(password.value)) {
+              password.style.borderColor = 'red';
+              password.setCustomValidity(error_message);
+            } else {
+              password.setCustomValidity(error_message);
+              password.style.borderColor = 'red';
+            }
+          };
+          password.onchange = validatePassword;
+        </script>
+        <%if(typeof ok !== 'undefined'&& ok === 'no'){%>
+        <p>this user name is already used</p>
+        <%}else if(typeof ok !== 'undefined'&& ok === 'yes'){%>
+        <p>registered succesfully</p>
+        <%}%>
+      </form>
+    </div>
+  </body>
 </html>
