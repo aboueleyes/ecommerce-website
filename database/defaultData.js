@@ -35,11 +35,11 @@ const Category3 = new Category({
   products: [product1, product2]
 });
 
-exports.getDefaultDataIfDBEmpty = function () {
+exports.getDefaultData = function () {
   Product.find({}, (err, products) => {
     if (err) {
       console.log(err);
-    } else if (products.length === 0) {
+    } else {
       product1.save();
       product2.save();
     }
@@ -48,7 +48,7 @@ exports.getDefaultDataIfDBEmpty = function () {
   Category.find({}, (err, categories) => {
     if (err) {
       console.log(err);
-    } else if (categories.length === 0) {
+    } else {
       Category1.save();
       Category2.save();
       Category3.save();
