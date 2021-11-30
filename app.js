@@ -25,5 +25,4 @@ app.use('/home', homeRoute);
 app.use('/register', registerRoute);
 // launch server
 app.listen(3000, () => {
-  console.log('Server is running on port 3000');
 });
