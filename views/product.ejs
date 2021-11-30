@@ -12,13 +12,6 @@
         text-align: center;
         -webkit-text-stroke: 1px blue;
       }
-      .cont {
-        position: relative;
-        left: 600px;
-        top: 50px;
-        color: white;
-        -webkit-text-stroke: 0.5px black;
-      }
       .container1 {
         position: fixed;
         left: 50px;
@@ -30,25 +23,32 @@
         left: 300px;
         top: 150px;
         color: white;
+        width: 300px;
+        text-align: justify;
+        text-justify: inter-word;
       }
-      #label1 {
-        position: relative;
-        right: -50px;
+      .video {
+        position: fixed;
+        left: 700px;
+        top: 150px;
+        color: white;
+        width: 300px;
+        text-align: justify;
+        text-justify: inter-word;
       }
-      #label2 {
-        position: relative;
-        right: 0px;
+      .cart {
+        position: fixed;
+        left: 30px;
+        top: 470px;
       }
-      #boxing,
-      #tennis {
-        position: relative;
-        left: 50px;
+      #my {
+        zoom: 110%;
       }
     </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title><%=category.name%></title>
+    <title><%=product.name%></title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -56,11 +56,10 @@
       crossorigin="anonymous"
     />
   </head>
-
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
       <a class="navbar-brand" style="color: rgb(191, 255, 161)"
-        ><%=category.name%></a
+        ><%=product.name%></a
       >
       <button
         class="navbar-toggler"
@@ -89,28 +88,21 @@
         </form>
       </div>
     </nav>
-    <% for (var i = 0; i < category.products.length; i++) { %>
-    <div class="container<%=i+1%>">
+    <div class="container1">
       <img
         id="image"
-        src="../<%=category.products[i].imageSrc%> "
-        alt="<%=category.products[i].name%>"
+        src="../<%=product.imageSrc%> "
+        alt="<%=product.name%>"
         width="193"
         height="300"
       />
-      <br />
-      <label id="label1" class="ml-4 my-2"
-        ><%=category.products[i].name%></label
-      >
-      <br />
-      <button
-        onclick="location.href = '/product/<%=category.products[i].name%>';"
-        id="<%=category.products[i].name%>"
-        class="btn btn-secondary ml-3"
-      >
-        View
-      </button>
     </div>
-    <% } %>
+    <div class="container2"><%=product.description%></div>
+    <div class="cart">
+      <button id="cart" class="btn btn-secondary ml-3">Add to Cart</button>
+    </div>
+    <div class="video">
+      <iframe width="480" height="360" src="<%=product.videoLink%>"> </iframe>
+    </div>
   </body>
 </html>

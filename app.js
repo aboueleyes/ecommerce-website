@@ -27,8 +27,8 @@ app.use(cookieParser());
 app.use(express.static('public'));
 
 app.use('/', homeRoute);
-app.use('/category/:cat', categoryRoute);
-app.use('/product', productRoute);
+app.use('/category/:category', categoryRoute);
+app.use('/product/:product', productRoute);
 app.use('/cart', cartRoute);
 
 app.listen(3000, function () {
