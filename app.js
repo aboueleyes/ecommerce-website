@@ -1,37 +1,46 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-const url ='mongodb+srv://shimaa:Shemo$2864@cluster0.f4td6.mongodb.net/MyDb?retryWrites=true&w=majority';
-//const url = 'localhost:27017/users';
+
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 const mongoose = require('mongoose');
-async function connect (){
-    await mongoose.connect(url);
-}
-// declare Routers
+
+// routes
+const homeRoute = require('./routes/home');
+const categoryRoute = require('./routes/category');
+const productRoute = require('./routes/product');
+const cartRoute = require('./routes/cart');
 var loginRouter = require('./routes/login');
-var homeRoute = require('./routes/home');
 var registerRoute = require('./routes/register');
-var app = express();
+const app = express();
+
+// connect to database
+mongoose.connect('mongodb://localhost:27017/ecommerceDB', {
+  useNewUrlParser: true
+});
+
+
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public/images')));
 
-// link Routers
-app.use('/', loginRouter);
-app.use('/home', homeRoute);
+app.use(express.static('public'));
+
+app.use('/', homeRoute);
+app.use('/category/:category', categoryRoute);
+app.use('/product/:product', productRoute);
+app.use('/cart', cartRoute);
+app.use('/login', loginRouter);
 app.use('/register', registerRoute);
-// launch server
-app.listen(3000, connect().then(()=> {
-    console.log("Server is running on port 30000")
-}) 
-);
+app.listen(3000, function () {
+  console.log('Server is running on port 3000');
+});
+
+
 
 

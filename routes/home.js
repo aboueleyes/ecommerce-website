@@ -1,10 +1,21 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const defaultData = require('../database/defaultData');
+const Category = require('../database/categoryModel');
 
-/* GET login page. */
-router.get('/', function(req, res, next) {
-  var userName = req.query.userName
-  res.render('home',{userName : userName});
-});
+router.get('/', function (req, res) {
+  Category.find({}, (err, categories) => {
+    if (err) {
+      console.log(err);
+    } else {
+      if (categories.length === 0) {
+        defaultData.getDefaultData();
+        res.redirect('/');
+      }
+      res.render('home', { categories: categories });
+    }
+  });
+
+
 
 module.exports = router;

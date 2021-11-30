@@ -12,6 +12,8 @@
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+
+    "lodash": "^4.17.21",
     "mongodb": "^4.2.0",
     "mongoose": "^6.0.13",
     "morgan": "~1.9.1",
@@ -21,5 +23,6 @@
     "eslint": "^8.3.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.3"
+
   }
 }
