@@ -5,9 +5,10 @@ var mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const url =
   'mongodb+srv://shimaa:Shemo$2864@cluster0.f4td6.mongodb.net/MyDb?retryWrites=true&w=majority';
-const url_ibrahim = 'localhost:27017/products';
+  
+const url_ibrahim = 'localhost:27017/users';
 async function register(userName, password) {
-  // await mongoose.connect(url_ibrahim);
+  await mongoose.connect(url);
   const user = new User({ userName: userName, password: password });
   var verify = 'yes';
   await user.save().catch(err => {
@@ -25,8 +26,12 @@ router.post('/', (req, res, next) => {
   var hashedPassword = bcrypt.hashSync(password, 10);
   console.log(hashedPassword);
   register(userName, hashedPassword).then(verify => {
-    console.log(verify);
-    res.render('home', { ok: verify });
+    if (verify === 'yes') {
+      res.redirect('/')
+    }
+    else{  
+      res.render('registration', {ok : verify} );
+    }
   });
 });
 /* GET registration page*/
