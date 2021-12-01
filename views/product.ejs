@@ -98,9 +98,19 @@
       />
     </div>
     <div class="container2"><%=product.description%></div>
-    <div class="cart">
-      <button id="cart" class="btn btn-secondary ml-3">Add to Cart</button>
-    </div>
+    <form action="/product/<%=product._id%> " method="post">
+      <div class="cart">
+        <button
+          id="cart"
+          class="btn btn-secondary ml-3"
+          type="submit"
+          value="<%= product._id %>"
+          name="product"
+        >
+          Add to Cart
+        </button>
+      </div>
+    </form>
     <div class="video">
       <iframe width="480" height="360" src="<%=product.videoLink%>"> </iframe>
     </div>

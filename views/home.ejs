@@ -88,7 +88,6 @@
 
     <div class="container">
       <h1>Welcome<%=userName%></h1>
-
     </div>
     <% for (var i = 0; i < categories.length; i++) {%>
     <div class="container<%=i+1%>">
@@ -103,7 +102,7 @@
       <label class="ml-4 my-2"><%=categories[i].name%></label>
       <br />
       <button
-        onclick="location.href = '/category/<%=categories[i].name%>';"
+        onclick="location.href = '/category/<%=categories[i]._id%>';"
         id="<%=categories[i].name%>"
         class="btn btn-secondary ml-3"
       >
