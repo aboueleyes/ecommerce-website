@@ -110,3 +110,6 @@ dist
 .vscode-test
 
 data
+
+package-lock.json
+package.json
