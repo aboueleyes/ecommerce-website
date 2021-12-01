@@ -25,13 +25,17 @@ async function addToCart(userName, productId) {
 }
 
 router.get('/', function (req, res) {
-  Product.find({ _id: req.params.product }, function (err, products) {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.render('product', { product: products[0] });
-    }
-  });
+  if (!req.session.userName) {
+    res.redirect('/login');
+  } else {
+    Product.find({ _id: req.params.product }, function (err, products) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.render('product', { product: products[0] });
+      }
+    });
+  }
 });
 
 router.post('/', function (req, res) {
