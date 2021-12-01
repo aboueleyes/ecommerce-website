@@ -5,6 +5,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+var session = require('express-session')
 
 // routes
 const homeRoute = require('./routes/home');
@@ -18,7 +19,7 @@ const app = express();
 //async function connect (){
 //    await mongoose.connect(url);
 //}
-// connect to database
+//connect to database
 mongoose.connect('mongodb://localhost:27017/ecommerceDB', {
   useNewUrlParser: true
 });
@@ -26,6 +27,11 @@ mongoose.connect('mongodb://localhost:27017/ecommerceDB', {
 
 
 // view engine setup
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+}));
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
@@ -40,7 +46,7 @@ app.use('/product/:product', productRoute);
 app.use('/cart', cartRoute);
 app.use('/login', loginRouter);
 app.use('/register', registerRoute);
-app.listen(3000,  () => {
+app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
 
