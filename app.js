@@ -1,11 +1,10 @@
-
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
-var session = require('express-session')
+var session = require('express-session');
 
 // routes
 const homeRoute = require('./routes/home');
@@ -24,14 +23,14 @@ mongoose.connect('mongodb://localhost:27017/ecommerceDB', {
   useNewUrlParser: true
 });
 
-
-
 // view engine setup
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-}));
+app.use(
+  session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true
+  })
+);
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
@@ -49,7 +48,3 @@ app.use('/register', registerRoute);
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
-
-
-
-
