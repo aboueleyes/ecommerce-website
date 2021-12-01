@@ -5,10 +5,9 @@ const Category = require('../database/categoryModel');
 
 router.get('/', function (req, res) {
   if (!req.session.userName) {
-      res.redirect('/login')
-  }
-  else {
-    var userName = req.session.userName
+    res.redirect('/login');
+  } else {
+    var userName = req.session.userName;
     Category.find({}, (err, categories) => {
       if (err) {
         console.log(err);
@@ -21,6 +20,6 @@ router.get('/', function (req, res) {
       }
     });
   }
-})
+});
 
 module.exports = router;
