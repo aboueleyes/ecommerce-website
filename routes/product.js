@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router({ mergeParams: true });
 const Product = require('../database/productModel');
+const Cart = require('../database/cartModel');
 
 router.get('/', function (req, res) {
   Product.find({ _id: req.params.product }, function (err, products) {
@@ -13,7 +14,9 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-  res.send(req.body);
+  Cart.findOne({ userName: req.session.userName }, function (err, cart) {
+    res.send(cart + req.body.product);
+  });
 });
 
 module.exports = router;

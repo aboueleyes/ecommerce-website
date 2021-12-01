@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 const User = require('../database/userModel');
-  
+const Cart = require('../database/cartModel');
+
 async function register(userName, password) {
   const user = new User({ userName: userName, password: password });
   var verify = 'yes';
@@ -23,10 +24,11 @@ router.post('/', (req, res, next) => {
   const hashedPassword = bcrypt.hashSync(password, 10);
   register(userName, hashedPassword).then(verify => {
     if (verify === 'yes') {
-      res.redirect('/login')
-    }
-    else{  
-      res.render('registration', {ok : verify} );
+      const cart = new Cart({ userName: userName, products: [] });
+      cart.save();
+      res.redirect('/login');
+    } else {
+      res.render('registration', { ok: verify });
     }
   });
 });
