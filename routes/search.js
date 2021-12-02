@@ -10,7 +10,7 @@ router.post('/', (req, res) => {
         res.redirect('/');
     } 
     else {
-        Product.find({ name: { $regex: `^${searchTerm}`, $options: "i" } }, function (err, products) {
+        Product.find({ name: { $regex: `${searchTerm}`, $options: "i" } }, function (err, products) {
             if (err) {
             res.status(500).send(err);
             } else {
