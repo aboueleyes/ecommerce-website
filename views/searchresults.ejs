@@ -19,8 +19,6 @@
         color: white;
         -webkit-text-stroke: 0.5px black;
       }
- 
-      
     </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -36,9 +34,7 @@
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
-      <a class="navbar-brand" style="color: rgb(191, 255, 161)"
-        >Results</a
-      >
+      <a class="navbar-brand" style="color: rgb(191, 255, 161)">Results</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -67,33 +63,32 @@
         </form>
       </div>
     </nav>
-    <div class = "container">
-    <div class = "row">
-    <% for (var i = 0; i < results.length; i++) { %>
-    <div class="col-4 p-4">
-      <img
-        id="image"
-        src="../<%=results[i].imageSrc%> "
-        alt="<%=results[i].name%>"
-        width="193"
-        height="300"
-      />
-      <br />
-      <label id="label1" class="ml-4 my-2"
-        ><%=results[i].name%></label
-      >
-      <br />
-      <button
-        onclick="location.href = '/product/<%=results[i].name%>';"
-        id="<%=results[i].name%>"
-        class="btn btn-secondary ml-3"
-      >
-        View
-      </button>
+    <div class="container">
+      <div class="row">
+        <% for (var i = 0; i < results.length; i++) { %>
+        <div class="col-4 p-4">
+          <img
+            id="image"
+            src="../<%=results[i].imageSrc%> "
+            alt="<%=results[i].name%>"
+            width="193"
+            height="300"
+          />
+          <br />
+          <label style="color: #28a745" id="label1" class="ml-4 my-2"
+            ><%=results[i].name%></label
+          >
+          <br />
+          <button
+            onclick="location.href = '/product/<%=results[i].name%>';"
+            id="<%=results[i].name%>"
+            class="btn btn-secondary ml-3"
+          >
+            View
+          </button>
+        </div>
+        <% } %>
+      </div>
     </div>
-    <% } %>
-  </div>
-</div>
-
   </body>
 </html>
