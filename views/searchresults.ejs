@@ -19,31 +19,8 @@
         color: white;
         -webkit-text-stroke: 0.5px black;
       }
-      .container1 {
-        position: fixed;
-        left: 50px;
-        top: 150px;
-        color: white;
-      }
-      .container2 {
-        position: fixed;
-        left: 300px;
-        top: 150px;
-        color: white;
-      }
-      #label1 {
-        position: relative;
-        right: -50px;
-      }
-      #label2 {
-        position: relative;
-        right: 0px;
-      }
-      #boxing,
-      #tennis {
-        position: relative;
-        left: 50px;
-      }
+ 
+      
     </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -90,8 +67,10 @@
         </form>
       </div>
     </nav>
+    <div class = "container">
+    <div class = "row">
     <% for (var i = 0; i < results.length; i++) { %>
-    <div class="container<%=i+1%>">
+    <div class="col-4 p-4">
       <img
         id="image"
         src="../<%=results[i].imageSrc%> "
@@ -113,5 +92,8 @@
       </button>
     </div>
     <% } %>
+  </div>
+</div>
+
   </body>
 </html>
