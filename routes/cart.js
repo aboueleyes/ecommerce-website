@@ -18,7 +18,6 @@ router.get('/', function (req, res) {
         Promise.all(userProducts.map((userProduct) => {
           return Product.findOne({ _id: userProduct.product }).exec();
         })).then((storedProducts) => {
-          console.log(storedProducts);
           res.render('cart', { userProducts: userProducts, storedProducts: storedProducts });
         }).catch((err) => {
           res.status(500).send(err);
