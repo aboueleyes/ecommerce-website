@@ -1,0 +1,12 @@
+body {
+  background-color: #f5f5f5;
+}
+.Product-img img {
+  width: 54%;
+}
+
+.main-section {
+  font-family: 'Roboto Condensed', sans-serif;
+  margin-top: 1%;
+  font-size: small;
+}
