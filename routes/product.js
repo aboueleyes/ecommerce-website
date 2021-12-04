@@ -1,4 +1,5 @@
 const express = require('express');
+const { StatusCodes } = require('http-status-codes');
 const router = express.Router({ mergeParams: true });
 const Product = require('../database/productModel');
 const Cart = require('../database/cartModel');
@@ -30,9 +31,10 @@ router.get('/', function (req, res) {
   } else {
     Product.find({ _id: req.params.product }, function (err, products) {
       if (err) {
-        res.status(500).send(err);
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err);
       } else {
-        res.render('product', { product: products[0] });
+        const requestedProduct = products[0];
+        res.render('product', { product: requestedProduct });
       }
     });
   }

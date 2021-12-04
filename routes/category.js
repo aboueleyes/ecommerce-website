@@ -1,4 +1,5 @@
 const express = require('express');
+const { StatusCodes } = require('http-status-codes');
 const router = express.Router({ mergeParams: true });
 const Category = require('../database/categoryModel');
 
@@ -8,9 +9,10 @@ router.get('/', function (req, res) {
   } else {
     Category.find({ _id: req.params.category }, function (err, categories) {
       if (err) {
-        res.status(500).send(err);
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err);
       } else {
-        res.render('category', { category: categories[0] });
+        const requestedCategory = categories[0];
+        res.render('category', { category: requestedCategory });
       }
     });
   }

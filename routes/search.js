@@ -1,4 +1,5 @@
 const express = require("express");
+const { StatusCodes } = require('http-status-codes');
 const router = express.Router();
 const Product = require("../database/productModel");
 
@@ -13,7 +14,7 @@ router.post("/", (req, res) => {
       { name: { $regex: `${searchTerm}`, $options: "i" } },
       function (err, products) {
         if (err) {
-          res.status(500).send(err);
+          res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err);
         } else {
           res.render("searchresults", { results: products });
         }
