@@ -4,14 +4,13 @@ button.addEventListener('click', getPostingButtonClickHandler());
 
 function getPostingButtonClickHandler(url) {
   return async function post() {
-    this.classList.add("posting");
+    this.classList.add('posting');
     this.setAttribute('disabled', true);
     try {
       await fetch(url, { method: 'POST' });
     } finally {
-      this.classList.remove("posting");
+      this.classList.remove('posting');
       this.removeAttribute('disabled');
     }
-  }
+  };
 }
-
