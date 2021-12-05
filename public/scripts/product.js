@@ -1,6 +1,6 @@
 var button = document.getElementById('cart');
 var product = button.dataset.product;
-button.addEventListener('click', getPostingButtonClickHandler());
+button.addEventListener('click', getPostingButtonClickHandler(product));
 
 function getPostingButtonClickHandler(url) {
   return async function post() {
