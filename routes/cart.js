@@ -1,31 +1,64 @@
 const express = require('express');
 const { StatusCodes } = require('http-status-codes');
-const router = express.Router();
 const Cart = require('../database/cartModel');
 const Product = require('../database/productModel');
 
-router.get('/', function (req, res) {
+const router = express.Router({ mergeParams: true });
+
+async function removeProductFromCart(userName, productId) {
+  const cart = await Cart.findOne({ userName });
+  cart.products.forEach((product, index) => {
+    if (product.product === productId) {
+      if (product.quantity === 1) {
+        cart.products.splice(index, 1);
+      } else {
+        console.log(product.quantity);
+        cart.products[index] = {
+          product: product.product,
+          quantity: product.quantity - 1
+        };
+      }
+    }
+  });
+  await cart.save();
+}
+async function getUserCart(userName, res) {
+  await Cart.findOne({ userName }, (err, cart) => {
+    if (err) {
+      res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err);
+    } else {
+      const userProducts = cart.products;
+      Promise.all(
+        userProducts.map(userProduct =>
+          Product.findOne({ _id: userProduct.product }).exec()
+        )
+      )
+        .then(storedProducts => {
+          res.render('cart', {
+            userProducts,
+            storedProducts
+          });
+        })
+        .catch(err => {
+          res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err);
+        });
+    }
+  });
+}
+router.get('/', (req, res) => {
   if (!req.session.userName) {
     res.redirect('/login');
+  } else {
+    const { userName } = req.session;
+    getUserCart(userName, res);
   }
-  else {
-    const userName = req.session.userName;
-    Cart.findOne({ userName: userName }, (err, cart) => {
-      if (err) {
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err);
-      }
-      else {
-        const userProducts = cart.products;
-        Promise.all(userProducts.map((userProduct) => {
-          return Product.findOne({ _id: userProduct.product }).exec();
-        })).then((storedProducts) => {
-          res.render('cart', { userProducts: userProducts, storedProducts: storedProducts });
-        }).catch((err) => {
-          res.status(StatusCode.INTERNAL_SERVER_ERROR).send(err);
-        })
-      }
-    });
-  }
+});
+
+router.post('/', async (req, res) => {
+  const { userName } = req.session;
+  const productId = req.params.product;
+  await removeProductFromCart(userName, productId);
+  await getUserCart(userName, res);
 });
 
 module.exports = router;

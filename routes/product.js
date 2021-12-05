@@ -10,7 +10,7 @@ async function addToCart(userName, productId) {
       return product.product === productId;
     });
     if (exist) {
-      cart.products.find((product, index) => {
+      cart.products.forEach((product, index) => {
         if (product.product === productId) {
           cart.products[index] = {
             product: product.product,
@@ -29,22 +29,26 @@ router.get('/', function (req, res) {
   if (!req.session.userName) {
     res.redirect('/login');
   } else {
-    Product.find({ _id: req.params.product }, function (err, products) {
-      if (err) {
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err);
-      } else {
-        const requestedProduct = products[0];
-        res.render('product', { product: requestedProduct });
-      }
-    });
+    renderProduct(req, res);
   }
 });
 
 router.post('/', function (req, res) {
-  const productId = req.body.product;
+  const productId = req.params.product;
   const userName = req.session.userName;
   addToCart(userName, productId);
-  res.redirect('/');
+  renderProduct(req, res);
 });
+
+function renderProduct(req, res) {
+  Product.find({ _id: req.params.product }, function (err, products) {
+    if (err) {
+      res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err);
+    } else {
+      const requestedProduct = products[0];
+      res.render('product', { product: requestedProduct });
+    }
+  });
+}
 
 module.exports = router;

@@ -107,9 +107,19 @@
                   />
                 </td>
                 <td class="actions" data-th="" style="width: 10%">
-                  <button class="btn btn-danger btn-sm">
-                    <i class="fa fa-trash-o"></i>
-                  </button>
+                  <form
+                    action="/cart/<%=userProducts[i].product%>"
+                    method="post"
+                  >
+                    <button
+                      class="btn btn-danger btn-sm"
+                      type="submit"
+                      value="<%=userProducts[i].product%>"
+                      name="remove"
+                    >
+                      <i class="fa fa-trash-o"></i>
+                    </button>
+                  </form>
                 </td>
               </tr>
             </tbody>
