@@ -22,8 +22,8 @@ async function removeProductFromCart(userName, productId) {
   });
   await cart.save();
 }
-async function getUserCart(userName, res) {
-  await Cart.findOne({ userName }, (err, cart) => {
+function getUserCart(userName, res) {
+  Cart.findOne({ userName }, (err, cart) => {
     if (err) {
       res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err);
     } else {
@@ -58,7 +58,7 @@ router.post('/', async (req, res) => {
   const { userName } = req.session;
   const productId = req.params.product;
   await removeProductFromCart(userName, productId);
-  await getUserCart(userName, res);
+  getUserCart(userName, res);
 });
 
 module.exports = router;
