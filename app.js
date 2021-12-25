@@ -14,14 +14,14 @@ const cartRoute = require('./routes/cart');
 var loginRouter = require('./routes/login');
 var registerRoute = require('./routes/register');
 const app = express();
-//const url ='mongodb+srv://shimaa:Shemo$2864@cluster0.f4td6.mongodb.net/MyDb?retryWrites=true&w=majority';
-//async function connect (){
-//    await mongoose.connect(url);
-//}
+const url ='mongodb+srv://shimaa:Shemo$2864@cluster0.f4td6.mongodb.net/MyDb?retryWrites=true&w=majority';
+async function connect (){
+    await mongoose.connect(url);
+}
 // connect to database
-mongoose.connect('mongodb://localhost:27017/ecommerceDB', {
-  useNewUrlParser: true
-});
+//mongoose.connect('mongodb://localhost:27017/ecommerceDB', {
+//  useNewUrlParser: true
+//});
 
 
 
@@ -40,9 +40,9 @@ app.use('/product/:product', productRoute);
 app.use('/cart', cartRoute);
 app.use('/login', loginRouter);
 app.use('/register', registerRoute);
-app.listen(3000,  () => {
+app.listen(3000,  connect().then (() => {
   console.log('Server is running on port 3000');
-});
+}));
 
 
 

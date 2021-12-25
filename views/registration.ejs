@@ -82,6 +82,7 @@
             } else {
               password.setCustomValidity(error_message);
               password.style.borderColor = 'red';
+              password.reportValidity()
             }
           };
           password.onchange = validatePassword;
