@@ -85,7 +85,11 @@
         </form>
       </div>
     </nav>
-
+    <div class="alert alert-danger" role="alert" style="display: <%=locals.display%>;"
+                                id="cart-alert">
+                                <i class="fas fa-exclamation-triangle"></i> Item Already in Cart
+                              </div>
+            <% locals.app.locals.display = 'none' %>
     <div class="container">
       <h1>Welcome <%=userName%></h1>
     </div>

@@ -76,7 +76,6 @@
             <thead>
               <tr>
                 <th>Product</th>
-                <th style="width: 10%">Quantity</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -97,14 +96,6 @@
                       <p><%= storedProducts[i].description %></p>
                     </div>
                   </div>
-                </td>
-                <td data-th="Quantity">
-                  <input
-                    type="text"
-                    class="form-control text-center"
-                    value="<%= userProducts[i].quantity %>"
-                    readonly
-                  />
                 </td>
                 <td class="actions" data-th="" style="width: 10%">
                   <form

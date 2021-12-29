@@ -9,15 +9,7 @@ async function removeProductFromCart(userName, productId) {
   const cart = await Cart.findOne({ userName });
   cart.products.forEach((product, index) => {
     if (product.product === productId) {
-      if (product.quantity === 1) {
         cart.products.splice(index, 1);
-      } else {
-        console.log(product.quantity);
-        cart.products[index] = {
-          product: product.product,
-          quantity: product.quantity - 1
-        };
-      }
     }
   });
   await cart.save();

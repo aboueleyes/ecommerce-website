@@ -113,16 +113,20 @@
       />
     </div>
     <div class="container2"><%=product.description%></div>
+    <form action="/product/<%=product._id%>" method="post">
     <div class="cart">
       <button
         id="cart"
         class="btn btn-secondary ml-3"
-        type="button"
+        type="submit"
         data-product="<%= product._id %>"
         name="product"
       >
         Add to Cart
       </button>
+      </form>
+    </div>
+        <i class="fas fa-exclamation-triangle"></i> Product already in cart
     </div>
     <div class="video">
       <iframe width="480" height="360" src="<%=product.videoLink%>"> </iframe>

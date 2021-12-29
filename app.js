@@ -25,6 +25,10 @@ mongoose.connect('mongodb://localhost:27017/ecommerceDB', {
   useNewUrlParser: true
 });
 
+app.locals  = {
+    display : 'none',
+    app : app
+};
 // view engine setup
 app.use(
   session({
@@ -49,7 +53,6 @@ app.use('/cart', cartRoute);
 app.use('/cart/:product', cartRoute);
 app.use('/login', loginRouter);
 app.use('/register', registerRoute);
-
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
-});
+})

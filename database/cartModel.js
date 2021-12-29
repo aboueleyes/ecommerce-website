@@ -8,7 +8,6 @@ const cartSchema = new mongoose.Schema({
   products: [
     {
       product: String,
-      quantity: Number
     }
   ]
 });
