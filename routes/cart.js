@@ -58,7 +58,7 @@ router.post('/', async (req, res) => {
   const { userName } = req.session;
   const productId = req.params.product;
   await removeProductFromCart(userName, productId);
-  getUserCart(userName, res);
+  res.redirect('/cart')
 });
 
 module.exports = router;
