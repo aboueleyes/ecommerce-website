@@ -39,9 +39,9 @@
     <div class="cont">
       <form method="post" action="/register">
         Username: <br />
-        <input type="text" id="user" name="username" /> <br />
+        <input type="text" id="user" name="username" required/> <br />
         Password: <br />
-        <input type="password" id="password" name="password" /> <br />
+        <input type="password" id="password" name="password" required/> <br />
         <br />
         <input
           type="submit"
@@ -84,6 +84,7 @@
             } else {
               password.setCustomValidity(error_message);
               password.style.borderColor = 'red';
+              password.reportValidity()
             }
           };
           password.onchange = validatePassword;

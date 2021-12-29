@@ -6,7 +6,6 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const session = require('express-session');
 
-// routes
 const homeRoute = require('./routes/home');
 const categoryRoute = require('./routes/category');
 const productRoute = require('./routes/product');
@@ -20,7 +19,7 @@ const app = express();
 //async function connect (){
 //    await mongoose.connect(url);
 //}
-//connect to database
+// connect to database
 mongoose.connect('mongodb://localhost:27017/ecommerceDB', {
   useNewUrlParser: true
 });
@@ -33,8 +32,8 @@ app.locals  = {
 app.use(
   session({
     secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true
+    resave:false,
+    saveUninitialized: false
   })
 );
 app.set('view engine', 'ejs');
@@ -44,7 +43,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(express.static('public'));
-
+app.use('/login', loginRouter);
 app.use('/', homeRoute);
 app.use('/search', searchRoute);
 app.use('/category/:category', categoryRoute);
@@ -52,7 +51,11 @@ app.use('/product/:product', productRoute);
 app.use('/cart', cartRoute);
 app.use('/cart/:product', cartRoute);
 app.use('/login', loginRouter);
+
+
 app.use('/register', registerRoute);
-app.listen(3000, () => {
+app.listen(3000,  () => {
   console.log('Server is running on port 3000');
-})
+
+});
+

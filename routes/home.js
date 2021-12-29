@@ -6,9 +6,10 @@ const Category = require('../database/categoryModel');
 
 router.get('/', function (req, res) {
   if (!req.session.userName) {
-    res.redirect('/login');
-  } else {
-    var userName = req.session.userName;
+      res.redirect('/login')
+  }
+  else {
+    const userName = req.session.userName
     Category.find({}, (err, categories) => {
       if (err) {
         res.status(StatusCodes.NOT_FOUND).send(err)

@@ -64,6 +64,9 @@
       </div>
     </nav>
     <div class="container">
+        <% if (results.length == 0) {%>
+            <p style ="color:white !important">no items found </p>
+        <% }%>    
       <div class="row">
         <% for (var i = 0; i < results.length; i++) { %>
         <div class="col-4 p-4">
@@ -88,6 +91,7 @@
           </button>
         </div>
         <% } %>
+    
       </div>
     </div>
   </body>
