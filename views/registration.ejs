@@ -50,7 +50,6 @@
           value="Register"
         />
         <br />
-        <!-- check if password is strong -->
         <script>
           var user = document.getElementById('user');
           user.onchange = function () {
@@ -59,6 +58,9 @@
               user.setCustomValidity(
                 'Username must be at least 4 characters long'
               );
+            } else {
+              user.style.borderColor = 'green';
+              user.setCustomValidity('');
             }
           };
 
