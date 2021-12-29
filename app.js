@@ -5,8 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 var session = require('express-session');
-const sessionMemoryStore=new session.MemoryStore();
-// routes
+
 const homeRoute = require('./routes/home');
 const categoryRoute = require('./routes/category');
 const productRoute = require('./routes/product');
@@ -16,14 +15,14 @@ var registerRoute = require('./routes/register');
 const searchRoute = require('./routes/search');
 
 const app = express();
-const url ='mongodb+srv://shimaa:Shemo$2864@cluster0.f4td6.mongodb.net/MyDb?retryWrites=true&w=majority';
-async function connect (){
-    await mongoose.connect(url);
-}
+//const url ='mongodb+srv://shimaa:Shemo$2864@cluster0.f4td6.mongodb.net/MyDb?retryWrites=true&w=majority';
+//async function connect (){
+//    await mongoose.connect(url);
+//}
 // connect to database
-//mongoose.connect('mongodb://localhost:27017/ecommerceDB', {
-//  useNewUrlParser: true
-//});
+mongoose.connect('mongodb://localhost:27017/ecommerceDB', {
+  useNewUrlParser: true
+});
 
 // view engine setup
 app.use(
@@ -48,10 +47,9 @@ app.use('/product/:product', productRoute);
 app.use('/cart', cartRoute);
 
 app.use('/register', registerRoute);
-app.listen(3000,  connect().then (() => {
+app.listen(3000,  () => {
   console.log('Server is running on port 3000');
-  console.log(sessionMemoryStore)
-}));
+});
 
 
 

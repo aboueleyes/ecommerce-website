@@ -8,9 +8,7 @@ router.get('/', function (req, res) {
       res.redirect('/login')
   }
   else {
-    var userName 
-    if(!userName){
-        var userName = req.session.userName}
+    const userName = req.session.userName
     Category.find({}, (err, categories) => {
       if (err) {
         console.log(err);
