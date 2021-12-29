@@ -3,7 +3,7 @@
   <head>
     <style>
       body {
-        background-image: url('../images/background3.jpg');
+        background-image: url('../images/black-background.jpg');
         background-repeat: no-repeat;
         background-size: 100%;
       }
@@ -104,7 +104,7 @@
       >
       <br />
       <button
-        onclick="location.href = '/product/<%=category.products[i].name%>';"
+        onclick="location.href = '/product/<%=category.products[i]._id%>';"
         id="<%=category.products[i].name%>"
         class="btn btn-secondary ml-3"
       >

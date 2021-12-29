@@ -4,14 +4,14 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
-var session = require('express-session');
+const session = require('express-session');
 
 const homeRoute = require('./routes/home');
 const categoryRoute = require('./routes/category');
 const productRoute = require('./routes/product');
 const cartRoute = require('./routes/cart');
-var loginRouter = require('./routes/login');
-var registerRoute = require('./routes/register');
+const loginRouter = require('./routes/login');
+const registerRoute = require('./routes/register');
 const searchRoute = require('./routes/search');
 
 const app = express();
@@ -24,6 +24,10 @@ mongoose.connect('mongodb://localhost:27017/ecommerceDB', {
   useNewUrlParser: true
 });
 
+app.locals  = {
+    display : 'none',
+    app : app
+};
 // view engine setup
 app.use(
   session({
@@ -45,12 +49,13 @@ app.use('/search', searchRoute);
 app.use('/category/:category', categoryRoute);
 app.use('/product/:product', productRoute);
 app.use('/cart', cartRoute);
+app.use('/cart/:product', cartRoute);
+app.use('/login', loginRouter);
+
 
 app.use('/register', registerRoute);
 app.listen(3000,  () => {
   console.log('Server is running on port 3000');
+
 });
-
-
-
 

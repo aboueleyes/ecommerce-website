@@ -3,7 +3,7 @@
   <head>
     <style>
       body {
-        background-image: url('images/background3.jpg');
+        background-image: url('images/black-background.jpg');
         background-repeat: no-repeat;
         background-size: 100%;
       }
@@ -46,7 +46,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Products</title>
+    <title>Home</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -85,10 +85,13 @@
         </form>
       </div>
     </nav>
-
+    <div class="alert alert-danger" role="alert" style="display: <%=locals.display%>;"
+                                id="cart-alert">
+                                <i class="fas fa-exclamation-triangle"></i> Item Already in Cart
+                              </div>
+            <% locals.app.locals.display = 'none' %>
     <div class="container">
-      <h1>Welcome<%=userName%></h1>
-
+      <h1>Welcome <%=userName%></h1>
     </div>
     <% for (var i = 0; i < categories.length; i++) {%>
     <div class="container<%=i+1%>">
@@ -103,7 +106,7 @@
       <label class="ml-4 my-2"><%=categories[i].name%></label>
       <br />
       <button
-        onclick="location.href = '/category/<%=categories[i].name%>';"
+        onclick="location.href = '/category/<%=categories[i]._id%>';"
         id="<%=categories[i].name%>"
         class="btn btn-secondary ml-3"
       >

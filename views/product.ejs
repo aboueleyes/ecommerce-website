@@ -3,7 +3,7 @@
   <head>
     <style>
       body {
-        background-image: url('../images/background3.jpg');
+        background-image: url('../images/black-background.jpg');
         background-repeat: no-repeat;
         background-size: 100%;
       }
@@ -27,6 +27,7 @@
         text-align: justify;
         text-justify: inter-word;
       }
+
       .video {
         position: fixed;
         left: 700px;
@@ -36,13 +37,25 @@
         text-align: justify;
         text-justify: inter-word;
       }
+
       .cart {
         position: fixed;
         left: 30px;
         top: 470px;
       }
+
       #my {
         zoom: 110%;
+      }
+
+      button.posting {
+        background-color: #4caf50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
       }
     </style>
     <meta charset="UTF-8" />
@@ -55,6 +68,8 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script src="/scripts/product.js" defer></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
@@ -98,8 +113,20 @@
       />
     </div>
     <div class="container2"><%=product.description%></div>
+    <form action="/product/<%=product._id%>" method="post">
     <div class="cart">
-      <button id="cart" class="btn btn-secondary ml-3">Add to Cart</button>
+      <button
+        id="cart"
+        class="btn btn-secondary ml-3"
+        type="submit"
+        data-product="<%= product._id %>"
+        name="product"
+      >
+        Add to Cart
+      </button>
+      </form>
+    </div>
+        <i class="fas fa-exclamation-triangle"></i> Product already in cart
     </div>
     <div class="video">
       <iframe width="480" height="360" src="<%=product.videoLink%>"> </iframe>

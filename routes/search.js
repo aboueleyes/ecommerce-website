@@ -1,23 +1,24 @@
-const express = require("express");
+const express = require('express');
+const { StatusCodes } = require('http-status-codes');
 const router = express.Router();
-const Product = require("../database/productModel");
+const Product = require('../database/productModel');
 
 // search route
-router.post("/", (req, res) => {
+router.post('/', (req, res) => {
   const searchTerm = req.body.searchTerm;
 
-  if (searchTerm === "") {
-    res.redirect("/");
+  if (searchTerm === '') {
+    res.redirect('/');
   } else {
     Product.find(
-      { name: { $regex: `${searchTerm}`, $options: "i" } },
+      { name: { $regex: `${searchTerm}`, $options: 'i' } },
       function (err, products) {
         if (err) {
-          res.status(500).send(err);
+          res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err);
         } else {
+          res.render('searchresults', { results: products });
           console.log(products)
-          res.render("searchresults", { results: products });
-        }
+          res.render("searchresults", { results: products });        }
       }
     );
   }
