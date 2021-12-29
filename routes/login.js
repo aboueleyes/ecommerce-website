@@ -21,9 +21,11 @@ router.post('/', function (req, res, next) {
       }
     }
     if (verify === 'yes') {
-      req.session.userName = userName; 
+      req.session.userName = userName
       console.log(req.session.userName)
-      res.redirect('/');
+      console.log(req.session.id)
+      console.log(res.session)
+     res.redirect('/');
 
     }
     else {
