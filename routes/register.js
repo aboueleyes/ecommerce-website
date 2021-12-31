@@ -26,7 +26,8 @@ router.post('/', (req, res, next) => {
     if (verify === 'yes') {
       const cart = new Cart({ userName: userName, products: [] });
       cart.save();
-      res.redirect('/login');
+      req.session.userName = userName
+      res.redirect('/');
     } else {
       res.render('registration', { ok: verify });
     }
