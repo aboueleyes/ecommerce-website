@@ -2,6 +2,7 @@ const express = require('express');
 const { StatusCodes } = require('http-status-codes');
 const Cart = require('../database/cartModel');
 const Product = require('../database/productModel');
+const { authUser } = require('../utilities/auth');
 
 const router = express.Router({ mergeParams: true });
 
@@ -9,7 +10,7 @@ async function removeProductFromCart(userName, productId) {
   const cart = await Cart.findOne({ userName });
   cart.products.forEach((product, index) => {
     if (product.product === productId) {
-        cart.products.splice(index, 1);
+      cart.products.splice(index, 1);
     }
   });
   await cart.save();
@@ -37,20 +38,16 @@ function getUserCart(userName, res) {
     }
   });
 }
-router.get('/', (req, res) => {
-  if (!req.session.userName) {
-    res.redirect('/login');
-  } else {
-    const { userName } = req.session;
-    getUserCart(userName, res);
-  }
+router.get('/', authUser, (req, res) => {
+  const { userName } = req.session;
+  getUserCart(userName, res);
 });
 
 router.post('/', async (req, res) => {
   const { userName } = req.session;
   const productId = req.params.product;
   await removeProductFromCart(userName, productId);
-  res.redirect('/cart')
+  res.redirect('/cart');
 });
 
 module.exports = router;

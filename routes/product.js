@@ -3,6 +3,7 @@ const { StatusCodes } = require('http-status-codes');
 const router = express.Router({ mergeParams: true });
 const Product = require('../database/productModel');
 const Cart = require('../database/cartModel');
+const { authUser } = require('../utilities/auth');
 
 async function addToCart(req, userName, productId) {
   Cart.findOne({ userName: userName }, function (err, cart) {
@@ -20,15 +21,11 @@ async function addToCart(req, userName, productId) {
   });
 }
 
-router.get('/', function (req, res) {
-  if (!req.session.userName) {
-    res.redirect('/login');
-  } else {
-    renderProduct(req, res);
-  }
+router.get('/', authUser, function (req, res) {
+  renderProduct(req, res);
 });
 
-router.post('/', async function (req, res) {
+router.post('/', authUser, async function (req, res) {
   const productId = req.params.product;
   const userName = req.session.userName;
   addToCart(req, userName, productId);
