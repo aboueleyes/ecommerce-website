@@ -14,8 +14,9 @@ router.get('/', authUser, function (req, res) {
       if (categories.length === 0) {
         defaultData.getDefaultData();
         res.redirect('/');
+      } else {
+        res.render('home', { categories: categories, userName: userName });
       }
-      res.render('home', { categories: categories, userName: userName });
     }
   });
 });
