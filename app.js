@@ -24,15 +24,15 @@ mongoose.connect('mongodb://localhost:27017/ecommerceDB', {
   useNewUrlParser: true
 });
 
-app.locals  = {
-    display : 'none',
-    app : app
+app.locals = {
+  display: 'none',
+  app: app
 };
 // view engine setup
 app.use(
   session({
     secret: 'keyboard cat',
-    resave:false,
+    resave: false,
     saveUninitialized: false
   })
 );
@@ -52,10 +52,11 @@ app.use('/cart', cartRoute);
 app.use('/cart/:product', cartRoute);
 app.use('/login', loginRouter);
 
-
-app.use('/register', registerRoute);
-app.listen(3000,  () => {
-  console.log('Server is running on port 3000');
-
+app.use(function (req, res) {
+  res.status(404).send('404 Not Found');
 });
 
+app.use('/register', registerRoute);
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});

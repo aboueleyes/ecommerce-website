@@ -16,8 +16,8 @@ router.post('/', (req, res) => {
         if (err) {
           res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err);
         } else {
-          console.log(products)
-          res.render("searchresults", { results: products });        
+          console.log(products);
+          res.render('searchresults', { results: products });
         }
       }
     );
