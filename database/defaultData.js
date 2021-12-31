@@ -6,7 +6,7 @@ const boxingBag = new Product({
   description:
     'Three-Station Heavy Duty Punching Bag Stand by Everlast, 54.00 x 54.00 x 84.00 Inches.',
   imageSrc: 'images/boxing.jpg',
-  videoLink: 'https://www.youtube.com/embed/cIkmxCDXBlQ'
+  videoLink: 'https://www.youtube.com/embed/vY1kB6uEu9c'
 });
 
 const tennisRacket = new Product({
@@ -14,7 +14,7 @@ const tennisRacket = new Product({
   description:
     '2021 New Professional-grade Wilson 1Pc Hend Carbon Fiber Tennis Racket.',
   imageSrc: 'images/tennis.jpg',
-  videoLink: 'https://www.youtube.com/embed/cIkmxCDXBlQ'
+  videoLink: 'https://www.ispot.tv/share/O7dL'
 });
 
 const galaxy = new Product({
@@ -27,7 +27,7 @@ const galaxy = new Product({
    phone body and has a metallic surround; the S21 Ultra has 
    a carbon fiber camera surround for exclusive colors.`,
   imageSrc: 'images/galaxy.jpg',
-  videoLink: 'https://www.youtube.com/embed/cIkmxCDXBlQ'
+  videoLink: 'https://www.youtube.com/embed/kYPHTSEU49Y'
 });
 
 const leaves = new Product({
@@ -36,7 +36,7 @@ const leaves = new Product({
   each poem of which is loosely connected and represents the 
   celebration of his philosophy of life and humanity.`,
   imageSrc: 'images/leaves.jpg',
-  videoLink: 'https://www.youtube.com/embed/cIkmxCDXBlQ'
+  videoLink: 'https://www.youtube.com/embed/Zm3nhUjZPuA'
 });
 
 const iphone = new Product({
@@ -46,7 +46,7 @@ const iphone = new Product({
    in the fifteenth generation of the iPhone, succeeding 
    the iPhone 12 Pro and iPhone 12 Pro Max.`,
   imageSrc: 'images/iphone.jpg',
-  videoLink: 'https://www.youtube.com/embed/cIkmxCDXBlQ'
+  videoLink: 'https://www.youtube.com/embed/XKfgdkcIUxw'
 });
 
 const sun = new Product({
@@ -57,7 +57,7 @@ const sun = new Product({
    Ancestry and honoring one’s roots. Expatriation and rising 
    up to find a home within yourself.`,
   imageSrc: 'images/sun.jpg',
-  videoLink: 'https://www.youtube.com/embed/cIkmxCDXBlQ'
+  videoLink: 'https://www.youtube.com/embed/FXbaFwDfziQ'
 });
 
 const sports = new Category({

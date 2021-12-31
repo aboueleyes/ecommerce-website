@@ -1,89 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <style>
+      body {
+        background-image: url('../images/black-background.jpg');
+        background-repeat: no-repeat;
+        background-size: 100%;
+      }
 
-<head>
-  <style>
-    body {
-      background-image: url('../images/black-background.jpg');
-      background-repeat: no-repeat;
-      background-size: 100%;
-    }
+      h1 {
+        color: white;
+        text-align: center;
+        -webkit-text-stroke: 1px blue;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Cart</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Condensed"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/custom.css" />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+  </head>
 
-    h1 {
-      color: white;
-      text-align: center;
-      -webkit-text-stroke: 1px blue;
-    }
-  </style>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Cart</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="../stylesheets/custom.css" />
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-</head>
-
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
-    <a class="navbar-brand" href="/">
-      <i class="fas fa-home"></i>
-      Cart
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto"></ul>
-      <form method="POST" action="/search" class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" name="Search" type="search" placeholder="Search" aria-label="Search" />
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-          Search
-        </button>
-      </form>
-    </div>
-  </nav>
-  <div class="container main-section">
-    <div class="row">
-      <div class="col-lg-12 pl-3 pt-3">
-        <table class="table table-hover border bg-white">
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <% for (var i = 0;i < userProducts.length;i++) { %>
-          <tbody>
-            <tr>
-              <td>
-                <div class="row">
-                  <div class="col-lg-2 Product-img">
-                    <img src="../<%= storedProducts[i].imageSrc %>" alt="<%= storedProducts[i].name %>" class="img-responsive" />
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
+      <a class="navbar-brand" href="/">
+        <i class="fas fa-home"></i>
+        Cart
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto"></ul>
+        <form method="POST" action="/search" class="form-inline my-2 my-lg-0">
+          <input
+            class="form-control mr-sm-2"
+            name="Search"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Search
+          </button>
+        </form>
+      </div>
+    </nav>
+    <div class="container main-section">
+      <div class="row">
+        <div class="col-lg-12 pl-3 pt-3">
+          <table class="table table-hover border bg-white">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <% for (var i = 0;i < userProducts.length;i++) { %>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="row">
+                    <div class="col-lg-2 Product-img">
+                      <img
+                        src="../<%= storedProducts[i].imageSrc %>"
+                        alt="<%= storedProducts[i].name %>"
+                        class="img-responsive"
+                      />
+                    </div>
+                    <div class="col-lg-10">
+                      <h4 class="nomargin"><%= storedProducts[i].name %></h4>
+                      <p><%= storedProducts[i].description %></p>
+                    </div>
                   </div>
-                  <div class="col-lg-10">
-                    <h4 class="nomargin"><%= storedProducts[i].name %></h4>
-                    <p><%= storedProducts[i].description %></p>
-                  </div>
-                </div>
-              </td>
-              <td class="actions" data-th="" style="width: 10%">
-                <form action="/cart/<%=userProducts[i].product%>" method="post">
-                  <button class="btn btn-danger btn-sm" type="submit" value="<%=userProducts[i].product%>" name="remove">
-                    <i class="fa fa-trash-o"></i>
-                  </button>
-                </form>
-              </td>
-            </tr>
-          </tbody>
-          <% } %>
-        </table>
+                </td>
+                <td class="actions" data-th="" style="width: 10%">
+                  <form
+                    action="/cart/<%=userProducts[i].product%>"
+                    method="post"
+                  >
+                    <button
+                      class="btn btn-danger btn-sm"
+                      type="submit"
+                      value="<%=userProducts[i].product%>"
+                      name="remove"
+                    >
+                      <i class="far fa-trash-alt"></i>
+                    </button>
+                  </form>
+                </td>
+              </tr>
+            </tbody>
+            <% } %>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>
