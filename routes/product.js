@@ -10,13 +10,13 @@ async function addToCart(req, userName, productId) {
       return product.product === productId;
     });
     if (exist) {
-        console.log('product already exist');
-        req.app.locals.display = 'block';
+      console.log('product already exist');
+      req.app.locals.display = 'block';
     } else {
-      cart.products.push({ product: productId});
+      cart.products.push({ product: productId });
+      cart.save();
+      console.log('product added to cart');
     }
-    cart.save();
-    console.log('product added to cart');
   });
 }
 
@@ -24,14 +24,14 @@ router.get('/', function (req, res) {
   if (!req.session.userName) {
     res.redirect('/login');
   } else {
-    renderProduct(req, res, 'none');
+    renderProduct(req, res);
   }
 });
 
 router.post('/', async function (req, res) {
   const productId = req.params.product;
   const userName = req.session.userName;
-  await addToCart(req, userName, productId);
+  addToCart(req, userName, productId);
   res.redirect('/');
 });
 

@@ -1,135 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <style>
-      body {
-        background-image: url('../images/black-background.jpg');
-        background-repeat: no-repeat;
-        background-size: 100%;
-      }
-      h1 {
-        color: white;
-        text-align: center;
-        -webkit-text-stroke: 1px blue;
-      }
-      .container1 {
-        position: fixed;
-        left: 50px;
-        top: 150px;
-        color: white;
-      }
-      .container2 {
-        position: fixed;
-        left: 300px;
-        top: 150px;
-        color: white;
-        width: 300px;
-        text-align: justify;
-        text-justify: inter-word;
-      }
 
-      .video {
-        position: fixed;
-        left: 700px;
-        top: 150px;
-        color: white;
-        width: 300px;
-        text-align: justify;
-        text-justify: inter-word;
-      }
+<head>
+  <style>
+    body {
+      background-image: url('../images/black-background.jpg');
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
 
-      .cart {
-        position: fixed;
-        left: 30px;
-        top: 470px;
-      }
+    h1 {
+      color: white;
+      text-align: center;
+      -webkit-text-stroke: 1px blue;
+    }
 
-      #my {
-        zoom: 110%;
-      }
+    .container1 {
+      position: fixed;
+      left: 50px;
+      top: 150px;
+      color: white;
+    }
 
-      button.posting {
-        background-color: #4caf50;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-      }
-    </style>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title><%=product.name%></title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-    <script src="/scripts/product.js" defer></script>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
-      <a class="navbar-brand" style="color: rgb(191, 255, 161)"
-        ><%=product.name%></a
-      >
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto"></ul>
-        <form method="POST" action="/search" class="form-inline my-2 my-lg-0">
-          <input
-            class="form-control mr-sm-2"
-            name="Search"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-            Search
-          </button>
-        </form>
-      </div>
-    </nav>
-    <div class="container1">
-      <img
-        id="image"
-        src="../<%=product.imageSrc%> "
-        alt="<%=product.name%>"
-        width="193"
-        height="300"
-      />
-    </div>
-    <div class="container2"><%=product.description%></div>
-    <form action="/product/<%=product._id%>" method="post">
-    <div class="cart">
-      <button
-        id="cart"
-        class="btn btn-secondary ml-3"
-        type="submit"
-        data-product="<%= product._id %>"
-        name="product"
-      >
-        Add to Cart
-      </button>
+    .container2 {
+      position: fixed;
+      left: 300px;
+      top: 150px;
+      color: white;
+      width: 300px;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    .video {
+      position: fixed;
+      left: 700px;
+      top: 150px;
+      color: white;
+      width: 300px;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    .cart {
+      position: fixed;
+      left: 30px;
+      top: 470px;
+    }
+
+    #my {
+      zoom: 110%;
+    }
+
+    button.posting {
+      background-color: #4caf50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title><%=product.name%></title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <script src="/scripts/product.js" defer></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
+    <a class="navbar-brand" style="color: rgb(191, 255, 161)"><%=product.name%></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto"></ul>
+      <form method="POST" action="/search" class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" name="Search" type="search" placeholder="Search" aria-label="Search" />
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          Search
+        </button>
       </form>
     </div>
-        <i class="fas fa-exclamation-triangle"></i> Product already in cart
-    </div>
-    <div class="video">
-      <iframe width="480" height="360" src="<%=product.videoLink%>"> </iframe>
-    </div>
-  </body>
+  </nav>
+  <div class="container1">
+    <img id="image" src="../<%=product.imageSrc%> " alt="<%=product.name%>" width="193" height="300" />
+  </div>
+  <div class="container2"><%=product.description%></div>
+  <form action="/product/<%=product._id%>" method="post">
+    <div class="cart">
+      <button id="cart" class="btn btn-secondary ml-3" type="submit" data-product="<%= product._id %>" name="product">
+        Add to Cart
+      </button>
+  </form>
+  <div class="video">
+    <iframe width="480" height="360" src="<%=product.videoLink%>"> </iframe>
+  </div>
+</body>
+
 </html>
