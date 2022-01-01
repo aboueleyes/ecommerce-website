@@ -5,7 +5,7 @@ const Product = require('../database/productModel');
 
 // search route
 router.post('/', (req, res) => {
-  const searchTerm = req.body.searchTerm;
+  const searchTerm = scapeNonAlphanumeric(req.body.searchTerm);
 
   if (searchTerm === '') {
     res.redirect('/');
@@ -23,5 +23,9 @@ router.post('/', (req, res) => {
     );
   }
 });
+
+function scapeNonAlphanumeric(str) {
+  return str.replace(/[^a-zA-Z0-9]/g, '\\$&').trim();
+}
 
 module.exports = router;

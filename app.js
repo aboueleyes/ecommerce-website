@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const session = require('express-session');
+const dotenv = require('dotenv');
 
 const homeRoute = require('./routes/home');
 const categoryRoute = require('./routes/category');
@@ -54,10 +55,11 @@ app.use('/login', loginRouter);
 app.use('/register', registerRoute);
 
 
+const port = process.env.PORT || 3000;
 app.use(function (req, res) {
   res.status(404).send('404 Not Found');
 });
 
-app.listen(3000, connect().then(() => {
+app.listen(port, connect().then(() => {
   console.log('Server is running on port 3000');
 }));
