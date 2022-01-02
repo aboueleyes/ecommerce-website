@@ -3,10 +3,17 @@ const { StatusCodes } = require('http-status-codes');
 const router = express.Router();
 const Product = require('../database/productModel');
 
+function scapeNonAlphanumeric(str) {
+  return str
+    .trim()
+    .replace(/[^a-zA-Z0-9]/g, '\\$&')
+    .trim();
+}
 // search route
 router.post('/', (req, res) => {
+  console.log(req.body);
   const searchTerm = scapeNonAlphanumeric(req.body.searchTerm);
-
+  console.log(searchTerm);
   if (searchTerm === '') {
     res.redirect('/');
   } else {
@@ -23,9 +30,5 @@ router.post('/', (req, res) => {
     );
   }
 });
-
-function scapeNonAlphanumeric(str) {
-  return str.replace(/[^a-zA-Z0-9]/g, '\\$&').trim();
-}
 
 module.exports = router;
