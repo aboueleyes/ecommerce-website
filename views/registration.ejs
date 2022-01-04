@@ -39,9 +39,9 @@
     <div class="cont">
       <form method="post" action="/register">
         Username: <br />
-        <input type="text" id="user" name="username" required/> <br />
+        <input type="text" id="user" name="username" required /> <br />
         Password: <br />
-        <input type="password" id="password" name="password" required/> <br />
+        <input type="password" id="password" name="password" required /> <br />
         <br />
         <input
           type="submit"
@@ -53,6 +53,7 @@
         <script>
           var user = document.getElementById('user');
           user.onchange = function () {
+            user.value = user.value.trim();
             if (user.value.length < 4) {
               user.style.borderColor = 'red';
               user.setCustomValidity(
@@ -84,7 +85,7 @@
             } else {
               password.setCustomValidity(error_message);
               password.style.borderColor = 'red';
-              password.reportValidity()
+              password.reportValidity();
             }
           };
           password.onchange = validatePassword;
