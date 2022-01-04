@@ -1,17 +1,17 @@
-const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const session = require('express-session');
-const dotenv = require('dotenv');
+const { StatusCodes } = require('http-status-codes');
 
 const homeRoute = require('./routes/home');
 const categoryRoute = require('./routes/category');
 const productRoute = require('./routes/product');
 const cartRoute = require('./routes/cart');
 const loginRoute = require('./routes/login');
+const logoutRoute = require('./routes/logout');
 const registerRoute = require('./routes/register');
 const searchRoute = require('./routes/search');
 
@@ -44,6 +44,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(express.static('public'));
+app.use('/', express.static(path.join(__dirname + 'public')));
 
 // routes
 app.use('/login', loginRoute);
@@ -54,11 +55,14 @@ app.use('/product/:product', productRoute);
 app.use('/cart', cartRoute);
 app.use('/cart/:product', cartRoute);
 app.use('/register', registerRoute);
-
+app.use('/logout', logoutRoute);
 
 const port = process.env.PORT || 3000;
 app.use(function (req, res) {
-  res.status(404).send('404 Not Found');
+  res.status(StatusCodes.NOT_FOUND).render('error', {
+    title: '404 NOT FOUND',
+    message: 'Error 404 : Page Not Found'
+  });
 });
 
 app.listen(port, connect().then(() => {
