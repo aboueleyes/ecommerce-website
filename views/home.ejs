@@ -62,6 +62,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="/scripts/search.js" defer></script>
     <title>Home</title>
     <link
       rel="stylesheet"
@@ -103,9 +104,17 @@
             type="search"
             placeholder="Search"
             aria-label="Search"
+            onkeydown="return event.key != 'Enter';"
+            id="searchInput"
+            oninput="this.setCustomValidity('')"
             required
           />
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          <button
+            class="btn btn-outline-success my-2 my-sm-0"
+            type="button"
+            onclick="trimSearchTerm(this)"
+            id="searchButton"
+          >
             Search
           </button>
         </form>
