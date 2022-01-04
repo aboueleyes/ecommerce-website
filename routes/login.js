@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const User = require('../database/userModel');
 var router = express.Router();
 
-/* POST to login page*/ 
+/* POST to login page*/
 router.post('/', function (req, res, next) {
   var userName = req.body.username;
   var password = req.body.password;
@@ -25,7 +25,7 @@ router.post('/', function (req, res, next) {
       console.log(req.session.userName)
       console.log(req.session.id)
       console.log(res.session)
-     res.redirect('/');
+      res.redirect('/');
 
     }
     else {
@@ -36,7 +36,12 @@ router.post('/', function (req, res, next) {
 
 /* GET login page. */
 router.get('/', function (req, res, next) {
-  res.render('login');
+  if (req.session.userName) {
+    res.redirect('/');
+  }
+  else {
+    res.render('login');
+  }
 });
 
 

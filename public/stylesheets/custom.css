@@ -10,3 +10,14 @@ body {
   margin-top: 1%;
   font-size: small;
 }
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+a:hover {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
