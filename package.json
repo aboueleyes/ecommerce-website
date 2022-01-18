@@ -18,7 +18,7 @@
     "http-status-codes": "^2.2.0",
     "lodash": "^4.17.21",
     "mongodb": "^4.3.0",
-    "mongoose": "^6.1.6",
+    "mongoose": "^6.1.7",
     "morgan": "~1.10.0",
     "nodemon": "^2.0.15"
   },
